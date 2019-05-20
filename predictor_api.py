@@ -21,6 +21,7 @@ with open(cl_path, 'r', encoding='utf-8') as cl:
         clean_word_dict[typo] = correct
 
 def clean_word(text):
+    # Removes different characters, symbols, numbers, some stop words
     replace_numbers = re.compile(r'\d+', re.IGNORECASE)
     special_character_removal = re.compile(r'[^a-z\d ]', re.IGNORECASE)
 
@@ -63,21 +64,21 @@ def clean_word(text):
     text = replace_numbers.sub('', text)
     return text
 
+
+# Load the models 
 # model_dict is the collection of extra tree models 
-
 model_dict = joblib.load('./static/models/models.p')
-
 word_vectorizer = joblib.load('static/models/word_vectorizer.p')
 
 def raw_chat_to_model_input(raw_input_string):
-    
+    # Converts string into cleaned text
     cleaned_text = []
     for text in [raw_input_string]:
         cleaned_text.append(clean_word(text))
-    #print(cleaned_text)
     return word_vectorizer.transform(cleaned_text)
 
 def predict_toxicity(raw_input_string):
+    ''' Given any input string, predict the toxicity levels'''
     model_input = raw_chat_to_model_input(raw_input_string)
     results = []
     for key,model in model_dict.items():
@@ -86,8 +87,11 @@ def predict_toxicity(raw_input_string):
 
 def make_prediction(input_chat):
     """
+    Given string to classify, returns the input argument and the dictionary of 
+    model classifications in a dict so that it may be passed back to the HTML page.
+    
     Input:
-    feature_dict: a dictionary of the form {"feature_name": "value"}
+    Raw string input
 
     Function makes sure the features are fed to the model in the same order the
     model expects them.
@@ -109,7 +113,7 @@ def make_prediction(input_chat):
 
 
 # This section checks that the prediction code runs properly
-# To run, type "python predictor_api.py" in the terminal.
+# To test, use "python predictor_api.py" in the terminal.
 
 # The if __name__='__main__' section ensures this code only runs
 # when running this file; it doesn't run when importing

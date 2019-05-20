@@ -26,7 +26,9 @@ def predict():
         return flask.render_template('predictor.html', chat_in=x_input,
                                      # chat_in=feature_names,
                                      prediction=predictions)
-    else:
+    else: 
+        #For first load, request.args will be an empty ImmutableDict type. If this is the case,
+        # we need to pass an empty string into make_prediction function so no errors are thrown.
         x_input, predictions = make_prediction('')
         return flask.render_template('predictor.html', chat_in=x_input,
                                      # chat_in=feature_names,
@@ -34,7 +36,6 @@ def predict():
 
 
 # Start the server, continuously listen to requests.
-# We'll have a running web app!
 
 if __name__=="__main__":
     # For local development:
