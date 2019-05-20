@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Twitch Chat Toxicity Predictor</title>
+</head>
+
+<body>
+  <form action="/">
+        <br>
+        Chat string:
+        <br>
+        <input type="text" name="twitch_chat" value="{{x_input}}">
+
+    <br>
+    <!-- Submit button -->
+    <input type="submit" value="Submit" method="get">
+
+
+
+  </form>
+
+  <p>
+    prediction:
+    {% for p in prediction %}
+      <br>  {{p['name']}}:{{ 100*p['prob'] | round(1) }}% 
+    {% endfor %}
+  </p>
+
+</body>
+
+</html>

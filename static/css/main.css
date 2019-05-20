@@ -1,0 +1,9 @@
+/* because we are specifying body below, we 
+are affecting our body*/ 
+body{
+	background: lightblue;
+}
+/* we can see how the rules we set for color 'cascade':*/
+h1{
+	background: blue;
+}
