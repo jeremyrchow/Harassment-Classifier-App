@@ -3,8 +3,11 @@
 
 <head>
   <title>Twitch Chat Toxicity Predictor</title>
+  <link rel="stylesheet" type="text/css"  href="/static/css/main.css">
 </head>
-
+<h1>
+    Twitch Chat Classifier
+</h1>
 <body>
   <form action="/">
         <br>
@@ -19,9 +22,18 @@
 
 
   </form>
+  <h3>
+    Input String: '{{ chat_in }}'
+  </h3>
+  <p>
+      
+  </p>
+  <h2>
+     Predictions:
+  </h2>
 
   <p>
-    prediction:
+
     {% for p in prediction %}
       <br>  {{p['name']}}:{{ 100*p['prob'] | round(1) }}% 
     {% endfor %}

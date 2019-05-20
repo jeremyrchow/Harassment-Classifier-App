@@ -1,9 +1,46 @@
 /* because we are specifying body below, we 
 are affecting our body*/ 
+
 body{
-	background: lightblue;
+	background-color: white;
 }
 /* we can see how the rules we set for color 'cascade':*/
 h1{
-	background: blue;
+	font-family: 'Roboto', sans-serif;
+	font-size: 72px;
+	background-color: darkorange;
+	color: white;
+	text-shadow: 4px 4px 6px black;
+}
+p{
+	font-family: 'Roboto', sans-serif;	
+}
+
+h2 {
+       font-size: 1.2em;
+       margin: 60px 0 5px 0;
+       color: gray
+}
+
+.space {
+	margin-bottom: 20 px;
+}
+
+.wrapper {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+}
+
+#bar_chart {
+	margin-bottom: 0 px;
+}
+
+.bar {
+	fill: #FF75A3;
+}
+
+span {
+	color: steelblue;
 }
