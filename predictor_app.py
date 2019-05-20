@@ -20,8 +20,9 @@ def predict():
     # request.args contains all the arguments passed by our form
     # comes built in with flask. It is a dictionary of the form
     # "form name (as set in template)" (key): "string in the textbox" (value)
-    print(request.args)
-    x_input, predictions = make_prediction(request.args)
+
+    x_input, predictions = make_prediction(request.args['chat_in'])
+    print(x_input)
     return flask.render_template('predictor.html', chat_in=x_input,
                                  # chat_in=feature_names,
                                  prediction=predictions)
@@ -32,7 +33,7 @@ def predict():
 
 if __name__=="__main__":
     # For local development:
-    #app.run(debug=True)
+    app.run(debug=True)
     # For public web serving:
     #app.run(host='0.0.0.0')
     app.run()

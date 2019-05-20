@@ -6,6 +6,7 @@ and returns the desired result.
 This allows us to test if our modeling is working, without having to worry
 about whether Flask is working. A short check is run at the bottom of the file.
 """
+
 import pickle
 import numpy as np
 from sklearn.externals import joblib
@@ -61,13 +62,12 @@ def clean_word(text):
     text = re.sub(r"\s{2,}", " ", text)
     text = replace_numbers.sub('', text)
     return text
+
 # model_dict is the collection of extra tree models 
 
 model_dict = joblib.load('./static/models/models.p')
 
 word_vectorizer = joblib.load('static/models/word_vectorizer.p')
-
-chat_input = 'testsetststset hahahahaa ha ha ha jalf lsa fd'
 
 def raw_chat_to_model_input(raw_input_string):
     
@@ -97,6 +97,7 @@ def make_prediction(input_chat):
       x_inputs: a list of feature values in the order they appear in the model
       probs: a list of dictionaries with keys 'name', 'prob'
     """
+
     if not input_chat:
         input_chat = ' '
     pred_probs = predict_toxicity(input_chat)
@@ -109,9 +110,10 @@ def make_prediction(input_chat):
 
 # This section checks that the prediction code runs properly
 # To run, type "python predictor_api.py" in the terminal.
-#
+
 # The if __name__='__main__' section ensures this code only runs
 # when running this file; it doesn't run when importing
+
 if __name__ == '__main__':
     from pprint import pprint
     print("Checking to see what empty string predicts")
