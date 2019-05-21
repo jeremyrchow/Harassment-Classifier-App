@@ -82,14 +82,14 @@ def predict_toxicity(raw_input_string):
     model_input = raw_chat_to_model_input(raw_input_string)
     results = []
     for key,model in model_dict.items():
-        results.append(round(model.predict_proba(model_input)[0,1],4))
+        results.append(round(model.predict_proba(model_input)[0,1],3))
     return results
 
 def make_prediction(input_chat):
     """
     Given string to classify, returns the input argument and the dictionary of 
     model classifications in a dict so that it may be passed back to the HTML page.
-    
+
     Input:
     Raw string input
 
