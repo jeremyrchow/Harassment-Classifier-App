@@ -15,7 +15,15 @@ app = flask.Flask(__name__)
     #return flask.send_file("static/html/index.html")
 
 
-@app.route("/", methods=["POST", "GET"])
+@app.route("/", methods=["POST"])
+def print_piped():
+    if request.form['mes']:
+
+        msg = request.form['mes']
+        print(msg)
+    return msg
+
+@app.route("/", methods=["GET"])
 def predict():
     # request.args contains all the arguments passed by our form
     # comes built in with flask. It is a dictionary of the form
@@ -23,15 +31,15 @@ def predict():
     if(request.args):
         x_input, predictions = make_prediction(request.args['chat_in'])
         print(x_input)
-        return flask.render_template('predictor.html', chat_in=x_input,
-                                     # chat_in=feature_names,
+        return flask.render_template('predictor.html',
+                                     chat_in=x_input,
                                      prediction=predictions)
     else: 
         #For first load, request.args will be an empty ImmutableDict type. If this is the case,
         # we need to pass an empty string into make_prediction function so no errors are thrown.
         x_input, predictions = make_prediction('')
-        return flask.render_template('predictor.html', chat_in=x_input,
-                                     # chat_in=feature_names,
+        return flask.render_template('predictor.html',
+                                     chat_in=x_input,
                                      prediction=predictions)
 
 

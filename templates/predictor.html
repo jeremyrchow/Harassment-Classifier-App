@@ -31,7 +31,14 @@
   <h2>
      Predictions:
   </h2>
-
+  
+  <script>
+    var my_javascript_variable = <?php echo $_POST['mes'] ?>;
+    console.log(my_javascript_variable)
+  </script>
+  <p>
+    {{ my_javascript_variable}}
+  </p>
   <p>
 
     {% for p in prediction %}
