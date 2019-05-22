@@ -12,7 +12,17 @@ import numpy as np
 from sklearn.externals import joblib
 import re
 
+# Load the models 
+# model_dict is the collection of extra tree models 
+
+# This line doesn't work, joblib only loads locally. File is too big to upload to heroku though
+# model_dict = joblib.load('https://drive.google.com/open?id=1h20N5Cooti2e5CDkmKY5LOzRuLksyR5e')
+model_dict = joblib.load('./static/models/models_compressed.p')
+word_vectorizer = joblib.load('static/models/word_vectorizer.p')
+
+
 cl_path = 'static/cleaning/clean_letters.txt'
+
 clean_word_dict = {}
 with open(cl_path, 'r', encoding='utf-8') as cl:
     for line in cl:
@@ -65,10 +75,6 @@ def clean_word(text):
     return text
 
 
-# Load the models 
-# model_dict is the collection of extra tree models 
-model_dict = joblib.load('./static/models/models.p')
-word_vectorizer = joblib.load('static/models/word_vectorizer.p')
 
 def raw_chat_to_model_input(raw_input_string):
     # Converts string into cleaned text
@@ -110,7 +116,6 @@ def make_prediction(input_chat):
              for index in np.argsort(pred_probs)[::-1]]
 
     return (input_chat, probs)
-
 
 # This section checks that the prediction code runs properly
 # To test, use "python predictor_api.py" in the terminal.
