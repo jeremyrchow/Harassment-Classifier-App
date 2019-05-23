@@ -112,6 +112,8 @@ def make_prediction(input_chat):
 
     if not input_chat:
         input_chat = ' '
+    if len(input_chat) > 500:
+        input_chat = input_chat[:500]
     pred_probs = predict_toxicity(input_chat)
 
     probs = [{'name': list(model_dict.keys())[index], 'prob': pred_probs[index]}
