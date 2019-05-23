@@ -17,9 +17,11 @@ import re
 
 # This line doesn't work, joblib only loads locally. File is too big to upload to heroku though
 # model_dict = joblib.load('https://drive.google.com/open?id=1h20N5Cooti2e5CDkmKY5LOzRuLksyR5e')
-model_dict = joblib.load('./static/models/models_compressed.p')
-word_vectorizer = joblib.load('static/models/word_vectorizer.p')
+# model_dict = joblib.load('./static/models/models_compressed.p')
+# word_vectorizer = joblib.load('static/models/word_vectorizer.p')
 
+model_dict = joblib.load('./static/models/log_models.p')
+word_vectorizer = joblib.load('static/models/log_word_vectorizer.p')
 
 cl_path = 'static/cleaning/clean_letters.txt'
 
@@ -120,14 +122,14 @@ def make_prediction(input_chat):
 # This section checks that the prediction code runs properly
 # To test, use "python predictor_api.py" in the terminal.
 
-# The if __name__='__main__' section ensures this code only runs
+# if __name__='__main__' section only runs
 # when running this file; it doesn't run when importing
 
 if __name__ == '__main__':
     from pprint import pprint
     print("Checking to see what empty string predicts")
     print('input string is ')
-    chat_in = ' '
+    chat_in = 'bob'
     pprint(chat_in)
 
     x_input, probs = make_prediction(chat_in)
