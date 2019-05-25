@@ -1,24 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<div style="max-width:500px; margin-left: auto; margin-right: auto;">
-  <center><img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" alt="Twitch Logo" align="middle">
-  </center>
-</div>
+
 
 
 <head>
-
-<title>Twitch Chat Toxicity Predictor</title>
-  <link rel="stylesheet" type="text/css"  href="static/css/main.css">
+	<title>Twitch Chat Toxicity Predictor</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="static/images/icons/cat.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="cstatic/ss/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--===============================================================================================-->
 </head>
-<div style="text-align: center;">
-  <h1>
-    <u>
-    Chat Classifier
-  </u>
-  </h1>
-</div>
+
 <body>
+
+  <style>
+    body{
+      background-image: url("static/images/gifs/ezgif.com-rotate.gif"), url("static/images/gifs/ezgif.com-crop.gif");
+      background-size: auto;
+      background-position: right center, left center;
+      background-size: 20%;
+      background-attachment: fixed;
+      /* background-position: 25% 25%, 75% 25%; */
+      background-repeat: no-repeat, no-repeat;
+      background-color: #E6E2E1;
+    }
+  </style>
+
+	<div id="example1" class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+          <div style="max-width:500px; margin-left: auto; margin-right: auto;">
+            <center>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" alt="Twitch Logo" align="middle">
+            </center>
+            <div style="text-align: center;">
+              <h1 class="headertext">
+                <br>
+                Chat Classifier
+              </h1>
+            </div>
+          </div>
 
   <form action="/">
     <div style="text-align: center;">
@@ -26,61 +62,74 @@
         Input a word or phrase to get its toxicity levels:
         <br>
         <br>
-        <input type="text" name="chat_in" value="{{x_input}}" maxlength="500" style="width: 400px;">
-
-
-
+        <center>
+          <input align = "center" type="text" name="chat_in" autofocus="autofocus" value="{{x_input}}" maxlength="500" id="rcorners2">
+        </center>
+    <br>
     <!-- Submit button -->
-    <input type="submit" value="Submit" method="get">
+    <center>
+    <input align="center" type="submit" value="Submit" method="get" id="rcorners1">
+  </center>
     <br>
-    <br>
-    <br>
-  </div>
-
-
-<!--START TABLES-->
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:10;border-width:10px;}
-.tg td{font-family:Arial, sans-serif;font-size:20px;padding:10px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:20px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-c3ow{font-size:40px;border-color:inherit;text-align:center;vertical-align:middle}
-.tg .tg-73a0{font-size:40px;width:80%;border-color:inherit;text-align:center;vertical-align:middle}
-.tg .tg-0pky{border-color:inherit;text-align:center;vertical-align:middle}
-.tg .tg-0pky1{border-color:inherit;text-align:left;vertical-align:middle}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-73a0">String</th>
-    <th class="tg-c3ow">Prediction</th>
-  </tr>
-  <tr>
-    <td class="tg-0pky">{{chat_in}}</td>
-    <td class="tg-0pky1">
-      {% for p in prediction %}
-      {{p['name']}}:{{ 100*p['prob'] | round(1) }}%<br>
-      {% endfor %}
-    </td>
-  </tr>
-</table>
-
-<!--END TABLES-->
 
   </form>
-  <!-- <h3>
-    {{ chat_in }}
-  </h3> -->
-
-  <h2 align="center">
-    <!-- <u>
-     Predictions:
-    </u> -->
-  </h2>
-
-  <p align="center">
-
-
+    </div>
+    <!-- {% for p in prediction %}
+      <br>  {{p['name']}}:{{ (100*p['prob']) | round }}%
+    {% endfor %} -->
   </p>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">String Input</th>
+								<th colspan="2" class="column1">Toxicity Levels (Predictions)</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr>
+                  <td rowspan="6" class="column1">{{ chat_in }}</td>
+									<!-- <td rowspan="6" class="column1">{{ chat_in }}</td> -->
+                  <td class="column1">{{prediction[0]['name']}}</td>
+									<td class="column2">{{ (100 * prediction[0]['prob']) | round}}%</td>
+								</tr>
+								<tr>
+                  <td class="column1">{{prediction[1]['name']}}</td>
+									<td class="column2">{{ (100 * prediction[1]['prob']) | round}}%</td>
+								</tr>
+								<tr>
+                  <td class="column1">{{prediction[2]['name']}}</td>
+									<td class="column2">{{ (100 * prediction[2]['prob']) | round}}%</td>
+								</tr>
+								<tr>
+                  <td class="column1">{{prediction[3]['name']}}</td>
+									<td class="column2">{{ (100 * prediction[3]['prob']) | round}}%</td>
+								</tr>
+								<tr>
+                  <td class="column1">{{prediction[4]['name']}}</td>
+									<td class="column2">{{ (100 * prediction[4]['prob']) | round}}%</td>
+								</tr>
+								<tr>
+                  <td class="column1">{{prediction[5]['name']}}</td>
+									<td class="column2">{{ (100 * prediction[5]['prob']) | round}}%</td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/js/main.js"></script>
 
 </body>
-
 </html>
