@@ -4,24 +4,24 @@
 
 
 <head>
-	<title>Twitch Chat Toxicity Predictor</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Twitch Chat Toxicity Predictor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="static/images/icons/cat.png"/>
+  <link rel="icon" type="image/png" href="static/images/icons/cat.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+  <link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="static/vendor/perfect-scrollbar/perfect-scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="static/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="static/css/util.css">
-	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+  <link rel="stylesheet" type="text/css" href="static/css/util.css">
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
 <!--===============================================================================================-->
 </head>
 
@@ -31,33 +31,29 @@
     body{
       background-image: url("static/images/gifs/ezgif.com-rotate.gif"), url("static/images/gifs/ezgif.com-crop.gif");
       background-size: auto;
-      background-position: right center, left center;
+      background-position: 95% 10%, 5% 10%;
+      /* background-position: right center, left center; */
       background-size: 20%;
-      background-attachment: fixed;
-      /* background-position: 25% 25%, 75% 25%; */
+      background-attachment: inherit;
       background-repeat: no-repeat, no-repeat;
       background-color: #E6E2E1;
     }
   </style>
 
-	<div id="example1" class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-				<div class="table100">
-          <div style="max-width:500px; margin-left: auto; margin-right: auto;">
+  <div id="example1" class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+          <div style="max-width:25%; margin-left: auto; margin-right: auto;">
             <center>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" alt="Twitch Logo" align="middle">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" alt="Twitch Logo">
             </center>
-            <div style="text-align: center;">
-              <h1 class="headertext">
-                <br>
-                Chat Classifier
-              </h1>
-            </div>
           </div>
 
   <form action="/">
     <div style="text-align: center;">
+      <br>
+        <h1 class="headertext">Chat Classifier</h1>
         <br>
         Input a word or phrase to get its toxicity levels:
         <br>
@@ -78,62 +74,62 @@
       <br>  {{p['name']}}:{{ (100*p['prob']) | round }}%
     {% endfor %} -->
   </p>
-					<table>
-						<thead>
-							<tr class="table100-head">
-								<th class="column1">String Input</th>
-								<th colspan="2" class="column1">Toxicity Levels (Predictions)</th>
-							</tr>
-						</thead>
-						<tbody>
-								<tr>
+          <table>
+            <thead>
+              <tr class="table100-head">
+                <th class="column1">String Input</th>
+                <th colspan="2" class="column1">Toxicity Levels (Predictions)</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
                   <td rowspan="6" class="column1">{{ chat_in }}</td>
-									<!-- <td rowspan="6" class="column1">{{ chat_in }}</td> -->
+                  <!-- <td rowspan="6" class="column1">{{ chat_in }}</td> -->
                   <td class="column1">{{prediction[0]['name']}}</td>
-									<td class="column2">{{ (100 * prediction[0]['prob']) | round}}%</td>
-								</tr>
-								<tr>
+                  <td class="column2">{{ (100 * prediction[0]['prob']) | round}}%</td>
+                </tr>
+                <tr>
                   <td class="column1">{{prediction[1]['name']}}</td>
-									<td class="column2">{{ (100 * prediction[1]['prob']) | round}}%</td>
-								</tr>
-								<tr>
+                  <td class="column2">{{ (100 * prediction[1]['prob']) | round}}%</td>
+                </tr>
+                <tr>
                   <td class="column1">{{prediction[2]['name']}}</td>
-									<td class="column2">{{ (100 * prediction[2]['prob']) | round}}%</td>
-								</tr>
-								<tr>
+                  <td class="column2">{{ (100 * prediction[2]['prob']) | round}}%</td>
+                </tr>
+                <tr>
                   <td class="column1">{{prediction[3]['name']}}</td>
-									<td class="column2">{{ (100 * prediction[3]['prob']) | round}}%</td>
-								</tr>
-								<tr>
+                  <td class="column2">{{ (100 * prediction[3]['prob']) | round}}%</td>
+                </tr>
+                <tr>
                   <td class="column1">{{prediction[4]['name']}}</td>
-									<td class="column2">{{ (100 * prediction[4]['prob']) | round}}%</td>
-								</tr>
-								<tr>
+                  <td class="column2">{{ (100 * prediction[4]['prob']) | round}}%</td>
+                </tr>
+                <tr>
                   <td class="column1">{{prediction[5]['name']}}</td>
-									<td class="column2">{{ (100 * prediction[5]['prob']) | round}}%</td>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-<div style="text-align: center; color: #808080;">
-<a href="https://www.linkedin.com/in/jeremy-chow/">Jeremy Chow</a> and
-<a href="https://www.linkedin.com/in/randysm/">Randy Macaraeg</a>
- 
-</div>
-<br>
+                  <td class="column2">{{ (100 * prediction[5]['prob']) | round}}%</td>
+            </tbody>
+          </table>
+          <br>
+          <div style="text-align: center; color: #808080;">
+          <a href="https://www.linkedin.com/in/jeremy-chow/">Jeremy Chow</a> and
+          <a href="https://www.linkedin.com/in/randysm/">Randy Macaraeg</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+
 <!--===============================================================================================-->
-	<script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="static/vendor/bootstrap/js/popper.js"></script>
-	<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="static/vendor/bootstrap/js/popper.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="static/vendor/select2/select2.min.js"></script>
+  <script src="static/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="static/js/main.js"></script>
+  <script src="static/js/main.js"></script>
 
 </body>
 </html>

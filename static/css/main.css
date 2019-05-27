@@ -89,6 +89,12 @@ iframe {
 
 /*//////////////////////////////////////////////////////////////////
 [ Utiliti ]*/
+
+img {
+  width: 100%;
+  height: auto;
+}
+
 /* for submit button */
 #rcorners1 {
 	background-color: #6441A5;
@@ -116,11 +122,12 @@ iframe {
 
 .headertext {
 	color: #6441A5;
-	font-size: 60px;
+	font-size: 2em;
 	font-weight: bold;
 	text-decoration: underline;
 	/* text-decoration-color: #FFF; */
-	text-shadow: 2px 2px #000;
+	text-shadow: 1px 1px #000;
+  margin: 0px auto;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -170,14 +177,16 @@ table * {
 }
 table td, table th {
   padding-left: 8px;
+  /* padding-right: 20px; */
+  /* padding: 1% 1% 1% 1%; */
 }
 table thead tr {
-  height: 60px;
+  height: 47px;
 	background: #000000
   /* background: #36304a; */
 }
 table tbody tr {
-  height: 50px;
+  height: 37px;
 }
 table tbody tr:last-child {
   border: 0;
